@@ -15,7 +15,6 @@ def show_department_by_id(request, department_id):
     #     department_name = 'Trainers'
 
     department = Departments.objects.get(id=department_id)
-    print(department.name)
 
     html = (f'<html><body><h1> Department Name: {department.name},'
             f' Department ID: {department.pk} <h1><body><html>')
