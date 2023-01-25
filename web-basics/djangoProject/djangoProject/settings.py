@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zuazx)gwf3z-5a%4o9pi0h@fwl7d**fkvzxh_kkb0f0m*4fq+w'
+SECRET_KEY = 'django-insecure-#p9u4^l6vzugo3hp%xn62%)c*c&2=+l^*6@h#gx*+8l(l(a&dy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_introduction.tasks'
+    'djangoProject.tasks'
 ]
 
 MIDDLEWARE = [
@@ -38,7 +38,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'django_introduction.urls'
+ROOT_URLCONF = 'djangoProject.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_introduction.wsgi.application'
+WSGI_APPLICATION = 'djangoProject.wsgi.application'
 
 
 # Database
@@ -66,14 +66,13 @@ WSGI_APPLICATION = 'django_introduction.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_introduction_db',
+        'NAME': 'project_db',
         'USER': 'postgres-user',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
