@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks app</title>
+</head>
+<body>
+    <h1>The app works</h1>
+    {% if task_list %}
+    {% for task in task_list %}
+        <h1>{{ task.task_title }}</h1>
+        <p>{{ task.task_text }}</p>
+    {% endfor %}
+    {% else %}
+        <p>There is no created tasks!</p>
+    {% endif %}
+</body>
+</html>
