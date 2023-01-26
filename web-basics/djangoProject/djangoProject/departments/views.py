@@ -10,6 +10,7 @@ def show_department(request):
 
 # def show_department_by_id(request, department_id):
 #     department_name = ''
+
 #     if department_id == 1:
 #         department_name = 'Developers'
 #     elif department_id == 2:
