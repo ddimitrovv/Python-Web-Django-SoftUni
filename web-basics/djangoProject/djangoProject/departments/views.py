@@ -36,8 +36,22 @@ def show_department(request):
 #     )
 
 
+# def show_department_by_id(request, department_id):
+#     department = Departments.objects.filter(id=department_id)
+#     if department:
+#         department = department.get()
+#         context = {
+#             'department_name': department.name,
+#             'department_id': department.pk
+#         }
+#         return render(request, 'tasks/department-details.html', context)
+#     else:
+#         raise Http404
+
+
 def show_department_by_id(request, department_id):
     department = Departments.objects.filter(id=department_id)
+    context = dict()
     if department:
         department = department.get()
         context = {
@@ -46,4 +60,4 @@ def show_department_by_id(request, department_id):
         }
         return render(request, 'tasks/department-details.html', context)
     else:
-        raise Http404
+        return render(request, 'tasks/404.html', context)

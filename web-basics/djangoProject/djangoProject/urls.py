@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('djangoProject.tasks.urls')),
     path('departments/', include('djangoProject.departments.urls')),
+
 ]
