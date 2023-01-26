@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
+    <title>Tasks app</title>
+</head>
+<body>
+    <h1>Employees Information</h1>
+    <hr>
+    {% if employees %}
+        <p>Number of employees: {{ employees|length }}</p>
+        <hr>
+    {% for employee in employees %}
+        <ul type="none">
+            <li><p>First name: {{ employee.first_name }}</p></li>
+            <li><p>Last name: {{ employee.last_name }}</p></li>
+            <li><p>Department: {{ employee.department }}</p></li>
+            <li><p>email: {{ employee.email }}</p></li>
+        </ul>
+        <hr>
+    {% endfor %}
+    {% else %}
+        <p>There is no employees!</p>
+    {% endif %}
+</body>
+</html>
