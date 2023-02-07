@@ -6,9 +6,6 @@ from models_exercise.projects.models import Projects
 
 class Employee(models.Model):
 
-    class Meta:
-        verbose_name_plural = 'Employees'
-
     MONTHS = [
         ('Jan', 'January'),
         ('Feb', 'February'),
@@ -52,6 +49,7 @@ class Employee(models.Model):
     year_of_employment = models.IntegerField()
 
     class Meta:
+        verbose_name_plural = 'Employees'
         ordering = ['first_name', '-year_of_employment']
 
     def __str__(self):
