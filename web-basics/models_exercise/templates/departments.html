@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Departments</title>
+</head>
+    <body>
+        <h2>Departments</h2>
+        {% if departments %}
+            {% for department in departments %}
+                <ul>
+                    <li> {{ department.department_name }} </li>
+                </ul>
+            {% endfor %}
+        {% else %}
+            <p>There is no departments!</p>
+        {% endif %}
+
+    </body>
+</html>
