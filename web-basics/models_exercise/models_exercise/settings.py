@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'models_exercise.employees',
     'models_exercise.departments',
     'models_exercise.projects',
+    'models_exercise.appointments',
 ]
 
 MIDDLEWARE = [
