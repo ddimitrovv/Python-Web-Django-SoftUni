@@ -5,6 +5,10 @@ from models_exercise.projects.models import Projects
 
 
 class ProjectAppointment(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Appointments'
+
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     start_date = models.DateField()

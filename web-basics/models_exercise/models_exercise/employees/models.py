@@ -5,6 +5,10 @@ from models_exercise.projects.models import Projects
 
 
 class Employee(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Employees'
+
     MONTHS = [
         ('Jan', 'January'),
         ('Feb', 'February'),
@@ -45,5 +49,14 @@ class Employee(models.Model):
         on_delete=models.CASCADE,
     )
 
+    year_of_employment = models.IntegerField()
+
+    class Meta:
+        ordering = ['first_name', '-year_of_employment']
+
     def __str__(self):
         return f'{self.first_name} {self.last_name} - {self.job_level} - {self.department}'
+
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'

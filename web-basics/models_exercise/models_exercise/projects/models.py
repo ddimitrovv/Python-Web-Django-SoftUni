@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Projects(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Projects'
+
     MONTHS = [
         ('Jan', 'January'),
         ('Feb', 'February'),
