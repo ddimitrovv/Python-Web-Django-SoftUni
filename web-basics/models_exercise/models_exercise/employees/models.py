@@ -22,7 +22,7 @@ class Employee(models.Model):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=40)
-    emai_address = models.EmailField(
+    email_address = models.EmailField(
         unique=True,
         editable=False,
     )
