@@ -7,3 +7,6 @@ class Recipe(models.Model):
     description = models.TextField()
     ingredients = models.CharField(max_length=250)
     time = models.IntegerField()
+
+    def __str__(self):
+        return self.title
