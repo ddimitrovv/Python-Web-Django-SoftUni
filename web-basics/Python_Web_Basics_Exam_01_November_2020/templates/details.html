@@ -13,23 +13,11 @@
                     <p>{{ recipe.time }}</p>
                 </div>
                 <h3>Ingredients</h3>
-                {{ recipe.ingredients }}
+
                 <ul>
-                    
-                        <li>1 (3 pound) whole chicken</li>
-                    
-                        <li>4 medium (blank)s carrots halved</li>
-                    
-                        <li>4 stalks celery halved</li>
-                    
-                        <li>1 large onion halved</li>
-                    
-                        <li>water to cover</li>
-                    
-                        <li>salt and pepper to taste</li>
-                    
-                        <li>1 teaspoon chicken bouillon granules</li>
-                    
+                        {% for ingredient in recipe.ingredients.split %}
+                        <li> {{ ingredient|cut:',' }} </li>
+                        {% endfor %}
                 </ul>
                 <h3>How to prepare?</h3>
                 <div class="recipe-info-full">
