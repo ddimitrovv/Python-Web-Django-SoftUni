@@ -8,18 +8,18 @@
     <h2>There are no recipes.</h2>
 
     {% else %}
-        {% for item in form %}
+        {% for recipe in form %}
         <div class="items-container">
             <div class="item">
-                <h2>{{ item.title }}</h2>
-                <img class="detail-img" src="{{ item.image_url }}" alt="recipe-image">
+                <h2>{{ recipe.title }}</h2>
+                <img class="detail-img" src="{{ recipe.image_url }}" alt="recipe-image">
                 <div class="recipe-info">
-                    {{ item.description }}
+                    {{ recipe.description }}
                 </div>
                 <div class="buttons-container">
-                    <a class="button detail" href="./details.html">Details</a>
-                    <a class="button edit" href="./edit.html">Edit</a>
-                    <a class="button delete" href="./delete.html">Delete</a>
+                    <a class="button detail" href="{% url 'details recipe' pk=recipe.pk %}">Details</a>
+                    <a class="button edit" href="{% url 'edit recipe' pk=recipe.pk %}">Edit</a>
+                    <a class="button delete" href="{% url 'delete recipe' pk=recipe.pk %}">Delete</a>
                 </div>
             </div>
         </div>

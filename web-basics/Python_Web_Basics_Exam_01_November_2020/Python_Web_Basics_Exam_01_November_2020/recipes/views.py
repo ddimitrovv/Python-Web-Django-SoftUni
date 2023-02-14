@@ -25,7 +25,7 @@ def create_recipe(request):
 
     return render(
         request,
-        'index.html',
+        'create.html',
         context,
     )
 
@@ -81,7 +81,7 @@ def delete_recipe(request, pk):
     else:
         form = RecipeForm(request.POST, instance=recipe)
         if form.is_valid():
-            form.save()
+            recipe.delete()
             return redirect('main-page')
 
     context = {
