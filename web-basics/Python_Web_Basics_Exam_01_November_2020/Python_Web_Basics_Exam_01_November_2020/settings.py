@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'Python_Web_Basics_Exam_01_November_2020.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'recipes_db',
+        'NAME': 'postgres',
         'USER': 'postgres-user',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
