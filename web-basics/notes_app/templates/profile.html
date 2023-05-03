@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <body>
+        <!--navigation bar-->
+        <header>
+            <nav>
+                <ul>
+                    <li class="img"><img src="{% static 'images/note.png' %}" /></li>
+                    <li><a href="{% url 'home' %}">Notes</a></li>
+                    <li class="right">
+                        <a href="{% url 'create note' %}">Add Note</a>
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!--end navigation bar-->
+
+        <div class="body">
+            <!--headings-->
+            <h1>Your Profile</h1>
+            <!--end headings-->
+
+            <!--profile details container TODO-->
+            <div class="note-container">
+                <h2>
+                    {{ profile.first_name }} {{ profile.last_name }}
+                    <img src="{{ profile.image }}" />
+                </h2>
+                <p>Age: {{ profile.age }}</p>
+                <div>
+                    <p>All notes: {{ len_notes }}</p>
+                </div>
+                <div class="right">
+                    <a class="button delete" href="{% url 'delete profile' %}">Delete</a>
+                </div>
+            </div>
+            <!--end profile details container-->
+        </div>
+
+{% endblock %}

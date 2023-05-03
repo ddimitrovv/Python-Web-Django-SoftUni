@@ -13,9 +13,6 @@ class Profile(models.Model):
     age = models.PositiveIntegerField()
     image = models.URLField()
 
-    # def __str__(self):
-    #     return f'{self.first_name} {self.last_name}'
-
 
 class Note(models.Model):
     TITLE_MAX_LEN = 30

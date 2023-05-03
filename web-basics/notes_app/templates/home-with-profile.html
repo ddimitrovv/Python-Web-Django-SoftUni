@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <body>
+        <!--navigation bar-->
+        <header>
+            <nav>
+                <ul>
+                    <li class="img"><img src="{% static 'images/note.png' %}" /></li>
+                    <li><a href="{% url 'home' %}">Notes</a></li>
+                    <li class="right">
+                        <a href="{% url 'create note' %}">Add Note</a>
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!--end navigation bar-->
+
+        <h1>My Notes</h1>
+
+        {% if not notes %}
+        <h2>There are no notes.</h2>
+        {% else %}
+            {% for note in notes %}
+            <!--notes container-->
+                <div class="note-container">
+                    <h2>{{ note.title }} <img src="{{ note.image }}" /></h2>
+
+                    <div class="right">
+                        <a class="button details" href="{% url 'note details' pk=note.pk %}">Details</a>
+                        <a class="button edit" href="{% url 'edit note' pk=note.pk %}">Edit</a>
+                        <a class="button delete" href="{% url 'note delete' pk=note.pk %}">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!--end notes container-->
+
+{% endblock %}

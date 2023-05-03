@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!--navigation bar-->
+        <header>
+            <nav>
+                <ul>
+                <ul>
+                    <li class="img"><img src="{% static 'images/note.png' %}" /></li>
+                    <li><a href="{% url 'home' %}">Notes</a></li>
+                    <li class="right">
+                        <a href="{% url 'create note' %}">Add Note</a>
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!--end navigation bar-->
+
+        <div class="body">
+            <!--headings-->
+            <h1>Edit Note</h1>
+            <!--headings-->
+
+            <!--note edit data form-->
+            <div class="form">
+                <form method="POST">
+                    {{ form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Edit" />
+                </form>
+            </div>
+            <!--end note edit data form-->
+        </div>
+
+{% endblock %}
