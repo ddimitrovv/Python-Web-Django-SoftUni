@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from Online_Library.web.models import Profile, Book
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    ...
+
+
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    ...
