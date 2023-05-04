@@ -9,14 +9,6 @@ class ProfileBaseForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ProfileCreateForm(ProfileBaseForm):
-    ...
-
-
-class ProfileEditForm(ProfileBaseForm):
-    ...
-
-
 class ProfileDeleteForm(ProfileBaseForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -37,14 +29,6 @@ class BookBaseForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = '__all__'
-
-
-class BookCreateForm(BookBaseForm):
-    ...
-
-
-class BookEditForm(BookBaseForm):
-    ...
 
 
 class BookDeleteForm(BookBaseForm):

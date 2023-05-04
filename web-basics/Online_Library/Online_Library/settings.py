@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'Online_Library.web'
+    'Online_Library.web',
 ]
 
 MIDDLEWARE = [

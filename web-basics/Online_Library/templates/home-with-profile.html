@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/images/library.jpg" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/styles.css">
-    <title>Online Books Library</title>
-</head>
-
-<body>
-    <div id="container">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
         <header id="site-header">
 
             <!-- Navigation -->
@@ -17,9 +8,9 @@
                 <section class="navbar-dashboard">
                     <a href="#">Dashboard</a>
                     <div id="user">
-                        <span>Welcome, Peter</span>
-                        <a class="button" href="#">Add Book</a>
-                        <a class="button" href="#">Profile</a>
+                        <span>Welcome, {{ profile.first_name }}</span>
+                        <a class="button" href="{% url 'add book' %}">Add Book</a>
+                        <a class="button" href="{% url 'profile details' %}">Profile</a>
                     </div>
                 </section>
             </nav>
@@ -29,36 +20,21 @@
         <section id="dashboard-page" class="dashboard">
             <h1>Dashboard</h1>
              <!-- Display paragraph: If the user doesn't have any books  -->
+            {% if not books %}
             <p class="no-books">No books in database!</p>
+            {% else %}
             <!-- Display ul: with list-items for every books if any -->
             <ul class="my-books-list">
+                {% for book in books %}
                 <li class="myBooks">
-                            <h3>A Court of Thorns...</h3>
-                            <p>Type: Fiction</p>
-                            <p class="img"><img src="https://images-na.ssl-images-amazon.com/images/I/81Z-yHX8OcL.jpg" alt=""></p>
+                            <h3>{{ book.title }}</h3>
+                            <p>Type: {{ book.book_type }}</p>
+                            <p class="img"><img src="{{ book.image }}" alt=""></p>
                             <a class="button" href="#">Details</a>
                 </li>
-
-                <li class="myBooks">
-                    <h3>Outlander</h3>
-                    <p>Type: Other</p>
-                    <p class="img"><img src="https://images-na.ssl-images-amazon.com/images/I/71pjU7wfZFL.jpg" alt=""></p>
-                    <a class="button" href="#">Details</a>
-                </li>
-
-                <li class="myBooks">
-                    <h3>War and Peace</h3>
-                    <p>Type: Philosophy</p>
-                    <p class="img"><img src="https://images-na.ssl-images-amazon.com/images/I/A1aDb5U5myL.jpg" alt=""></p>
-                    <a class="button" href="#">Details</a>
-                </li>
+                {% endfor %}
             </ul>
+            {% endif %}
         </section>
 
-        <footer id="site-footer">
-            <p>Python Web Basics Retake Exam @SoftUni</p>
-        </footer>
-    </div>
-</body>
-
-</html>
+{% endblock %}
