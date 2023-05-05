@@ -6,12 +6,22 @@ class Profile(models.Model):
     LAST_NAME_MAX_LEN = 20
 
     first_name = models.CharField(
-        max_length=FIRST_NAME_MAX_LEN
+        max_length=FIRST_NAME_MAX_LEN,
+        blank=False,
+        null=False,
     )
     last_name = models.CharField(
-        max_length=LAST_NAME_MAX_LEN
+        max_length=LAST_NAME_MAX_LEN,
+        blank=False,
+        null=False,
     )
-    image = models.URLField()
+    image = models.URLField(
+        blank=False,
+        null=False,
+    )
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 class Book(models.Model):
@@ -19,11 +29,24 @@ class Book(models.Model):
     TYPE_MAX_LEN = 30
 
     title = models.CharField(
-        max_length=TITLE_MAX_LEN
+        max_length=TITLE_MAX_LEN,
+        blank=False,
+        null=False,
     )
-    description = models.TextField()
-    image = models.URLField()
+    description = models.TextField(
+        blank=False,
+        null=False,
+    )
+    image = models.URLField(
+        blank=False,
+        null=False,
+    )
     book_type = models.CharField(
-        max_length=TITLE_MAX_LEN
+        max_length=TITLE_MAX_LEN,
+        blank=False,
+        null=False,
     )
+
+    def __str__(self):
+        return f'{self.title}'
 
