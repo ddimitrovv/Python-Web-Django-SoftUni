@@ -2,7 +2,7 @@ from http.client import HTTPResponse
 
 from django.shortcuts import render, redirect
 
-from Online_Library.web.forms import ProfileBaseForm, BookBaseForm, ProfileDeleteForm
+from Online_Library.web.forms import ProfileBaseForm, BookBaseForm, ProfileDeleteForm, BookDeleteForm
 from Online_Library.web.models import Profile, Book
 
 
@@ -104,3 +104,32 @@ def add_book(request):
         'form': form
     }
     return render(request, 'add-book.html', context,)
+
+
+def details_book(request, pk):
+    book = Book.objects.filter(pk=pk).get()
+    context = {
+        'book': book
+    }
+    return render(request, 'book-details.html', context)
+
+
+def edit_book(request, pk):
+    book = Book.objects.filter(pk=pk).get()
+    if request.method == 'GET':
+        form = BookBaseForm(instance=book)
+    else:
+        form = BookBaseForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {
+        'form': form
+    }
+    return render(request, 'edit-book.html', context)
+
+
+def delete_book(request, pk):
+    book = Book.objects.filter(pk=pk).get()
+    book.delete()
+    return redirect('home')

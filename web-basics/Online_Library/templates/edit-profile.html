@@ -9,7 +9,7 @@
                     <a href="{% url 'home' %}">Dashboard</a>
                     <div id="user">
                         <span>Welcome, {{ profile.first_name }}</span>
-                        <a class="button" href="#">Add Book</a>
+                        <a class="button" href="{% url 'add book' %}">Add Book</a>
                         <a class="button" href="{% url 'profile details' %}">Profile</a>
                     </div>
                 </section>

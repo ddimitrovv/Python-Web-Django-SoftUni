@@ -6,14 +6,14 @@
             <!-- Navigation -->
             <nav class="navbar">
                 <section class="navbar-dashboard">
-                    <a href="#">Dashboard</a>
+                    <a href="{% url 'home' %}">Dashboard</a>
                 </section>
             </nav>
         </header>
 
      <!-- No Profile Page -->
         <section id="register-page" class="register">
-            <form id="register-form" action="" method="POST">
+            <form id="register-form" action="#" method="POST">
                 <fieldset>
                     <legend>Profile Form</legend>
                     {{ form }}
