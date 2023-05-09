@@ -45,7 +45,7 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return f'{self.email}'
+        return self.email
 
 
 class Game(models.Model):
@@ -106,5 +106,3 @@ class Game(models.Model):
         null=True,
     )
 
-    def __str__(self):
-        return f'{self.title}'
