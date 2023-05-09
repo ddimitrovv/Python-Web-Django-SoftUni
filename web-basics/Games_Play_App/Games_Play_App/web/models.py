@@ -106,3 +106,5 @@ class Game(models.Model):
         null=True,
     )
 
+    def __str__(self):
+        return self.title
