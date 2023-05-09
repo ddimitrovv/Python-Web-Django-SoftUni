@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from Games_Play_App.web.models import Profile, Game
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    ...
+
+
+@admin.register(Game)
+class GameAdmin(admin.ModelAdmin):
+    ...
