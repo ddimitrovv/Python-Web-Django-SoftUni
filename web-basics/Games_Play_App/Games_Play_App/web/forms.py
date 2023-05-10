@@ -11,3 +11,7 @@ class ProfileBaseForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput,
         }
+
+
+class NewForm(forms.ModelForm):
+    pass
