@@ -11,3 +11,5 @@ class ProfileBaseForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput,
         }
+        fields = ('email', 'age', 'password')
+        
