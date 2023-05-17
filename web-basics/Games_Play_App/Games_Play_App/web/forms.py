@@ -1,6 +1,6 @@
 from django import forms
 
-from Games_Play_App.web.models import Profile
+from Games_Play_App.web.models import Profile, Game
 
 
 class ProfileCreateForm(forms.ModelForm):
@@ -13,3 +13,8 @@ class ProfileCreateForm(forms.ModelForm):
         }
         fields = ('email', 'age', 'password')
         
+
+class GameBaseForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = '__all__'

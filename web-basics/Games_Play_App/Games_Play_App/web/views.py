@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from Games_Play_App.web.forms import ProfileCreateForm
-from Games_Play_App.web.models import Profile
+from Games_Play_App.web.forms import ProfileCreateForm, GameBaseForm
+from Games_Play_App.web.models import Profile, Game
 
 
 def get_profile():
@@ -42,3 +42,26 @@ def home_view(request):
         request, 'home-page.html', context,
     )
 
+
+def create_game(request):
+    if request.method == 'GET':
+        form = GameBaseForm()
+    else:
+        form = GameBaseForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'create-game.html', context)
+
+
+def dashboard(request):
+    games = Game.objects.all()
+    context = {
+        'games': games
+    }
+
+    return render(request, 'dashboard.html', context)
