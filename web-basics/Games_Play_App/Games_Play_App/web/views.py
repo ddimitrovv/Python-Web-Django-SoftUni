@@ -41,3 +41,4 @@ def home_view(request):
     return render(
         request, 'home-page.html', context,
     )
+
