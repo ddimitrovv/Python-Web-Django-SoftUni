@@ -14,10 +14,9 @@
     {% if not games %}
     <!-- Display paragraph: If there are no games-->
     <p class="no-articles">No games yet</p>
-
+        {% else %}
     <!-- Display div "game" with information about every game (if any)-->
     <section id="welcome-world">
-        {% else %}
         {% for game in games %}
         <div class="game">
             <div class="image-wrap">
@@ -34,10 +33,10 @@
                 <!-- game details button -->
                 <a href="#" class="btn details-btn">Details</a>
             </div>
-            {% endfor %}
-            {% endif %}
-        </div>
 
+        </div>
+        {% endfor %}
+        {% endif %}
 
 
     </section>
