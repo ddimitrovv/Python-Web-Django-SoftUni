@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/style.css">
-    <title>GamesPlay</title>
-</head>
-
-<body>
-<div id="box">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
     <header>
 
         <!-- navigation bar -->
@@ -26,25 +17,11 @@
                 <div class="brand-logo"></div>
                 <h1>Create Profile</h1>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
-
-                <label for="age">Age:</label>
-                <input type="number" name="age" id="age">
-
-                <label for="register-password">Password:</label>
-                <input type="password" name="password" id="register-password">
+                {{ form }}
+                {% csrf_token %}
 
                 <input class="btn submit" type="submit" value="Create Profile">
             </div>
         </form>
     </section>
-
-    <!-- footer -->
-    <footer>
-        &copy;SoftUni Team 2022. All rights reserved.
-    </footer>
-
-</div>
-</body>
-</html>
+{% endblock %}

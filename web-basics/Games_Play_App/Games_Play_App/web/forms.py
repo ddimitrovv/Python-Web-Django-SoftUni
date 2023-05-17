@@ -3,7 +3,7 @@ from django import forms
 from Games_Play_App.web.models import Profile
 
 
-class ProfileBaseForm(forms.ModelForm):
+class ProfileCreateForm(forms.ModelForm):
     # password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
