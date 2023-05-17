@@ -29,6 +29,22 @@ def add_profile(request):
     return render(request, 'create-profile.html', context)
 
 
+def profile_details(request):
+    current_profile = Profile.objects.get()
+    games = Game.objects.all()
+    total_games = games.count()
+    total_rating = 0
+    for game in games:
+        total_rating += game.rating
+    average_rating = total_rating / total_games
+    context = {
+        'profile': current_profile,
+        'total_games': total_games,
+        'average_rating': average_rating,
+    }
+    return render(request, 'details-profile.html', context)
+
+
 def home_view(request):
     current_profile = get_profile()
     if current_profile is None:
@@ -50,7 +66,7 @@ def create_game(request):
         form = GameBaseForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('home')
+        return redirect('dashboard')
 
     context = {
         'form': form

@@ -4,12 +4,12 @@
     <header>
 
         <!-- Navigation Bar -->
-        <h1><a class="home" href="#">GamesPlay</a></h1>
+        <h1><a class="home" href="{% url 'home' %}">GamesPlay</a></h1>
         <nav>
             <!-- if the user has created a profile -->
-            <a href="#">Dashboard</a>
-            <a href="#">Create Game</a>
-            <a href="#">Profile</a>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'create game' %}">Create Game</a>
+            <a href="{% url 'profile details' %}">Profile</a>
         </nav>
     </header>
 

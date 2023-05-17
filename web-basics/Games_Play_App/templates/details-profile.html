@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/style.css">
-    <title>GamesPlay</title>
-</head>
-
-<body>
-<div id="box">
+{% extends 'base.html' %}
+{% block content %}
     <header>
 
-        <!-- navigation bar-->
-        <h1><a class="home" href="#">GamesPlay</a></h1>
+        <!-- Navigation Bar -->
+        <h1><a class="home" href="{% url 'home' %}">GamesPlay</a></h1>
         <nav>
-            <a href="#">Dashboard</a>
-            <a href="#">Create Game</a>
-            <a href="#">Profile</a>
+            <!-- if the user has created a profile -->
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'create game' %}">Create Game</a>
+            <a href="{% url 'profile details' %}">Profile</a>
         </nav>
     </header>
 
@@ -26,20 +17,25 @@
         <h1>Profile Details</h1>
         <div class="info-section">
             <div class="game-header">
+                {% if not profile.picture %}
                 <!-- default profile image (if the user does NOT have any)-->
                 <img class="game-img" src="/static/images/default-user.jpg" alt='profile-image'/>
+                {% else %}
                 <!-- if the user has a profile image -->
-                <img class="game-img" src="" alt='profile-image'/>
+                <img class="game-img" src="{{ profile.picture }}" alt='profile-image'/>
+                {% endif %}
                 <!-- user full name (if any) -->
-                <h1>Aleksandra Raykova</h1>
+                {% if profile.full_name %}
+                <h1>{{ profile.full_name }}</h1>
+                {% endif %}
                 <!-- user email -->
-                <p class="text">Email: aleksandra@mail.com</p>
+                <p class="text">Email: {{ profile.email }}</p>
                 <!-- user age -->
-                <p class="text">Age: 28</p>
+                <p class="text">Age: {{ profile.age }}</p>
                 <!-- total number of games -->
-                <p class="text">Total games: 3</p>
+                <p class="text">Total games: {{ total_games }}</p>
                 <!-- average rating for all games -->
-                <p class="text">Average rating: 2.9</p>
+                <p class="text">Average rating: {{ average_rating }}</p>
                 <!-- Edit/Delete buttons -->
                 <div class="buttons">
                     <a href="#" class="button">Edit</a>
@@ -48,11 +44,4 @@
             </div>
         </div>
     </section>
-
-    <!-- footer -->
-    <footer>
-        &copy;SoftUni Team 2022. All rights reserved.
-    </footer>
-</div>
-</body>
-</html>
+{% endblock %}
