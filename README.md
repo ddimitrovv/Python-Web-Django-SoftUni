@@ -1,4 +1,4 @@
-# Python-Web-Django-SoftUni
+## Python-Web-Django-SoftUni
 
 Link to course: https://softuni.bg/trainings/3858/python-web-basics-september-2022
 
