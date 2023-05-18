@@ -38,8 +38,8 @@
                 <p class="text">Average rating: {{ average_rating }}</p>
                 <!-- Edit/Delete buttons -->
                 <div class="buttons">
-                    <a href="#" class="button">Edit</a>
-                    <a href="#" class="button">Delete</a>
+                    <a href="{% url 'edit profile' %}" class="button">Edit</a>
+                    <a href="{% url 'delete profile' %}" class="button">Delete</a>
                 </div>
             </div>
         </div>

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/style.css">
-    <title>GamesPlay</title>
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% block content %}
 <div id="box">
     <header>
 
@@ -29,34 +20,26 @@
             <div class="game-header">
                 <!-- game image -->
                 <img class="game-img"
-                     src="https://image.api.playstation.com/cdn/EP0001/CUSA04040_00/LRI3Rg5MKOi5AkefFaMcChNv5WitM7sz.png"
+                     src="{{ game.image }}"
                      alt='game image'/>
                 <!-- title and rating -->
-                <h1>UNO <span class="levels">Rating: 4.3</span></h1>
+                <h1>{{ game.title }} <span class="levels">Rating: {{ game.rating }}</span></h1>
                 <!-- game category -->
-                <p><span class="type">Category: Board/Card Game</span></p>
+                <p><span class="type">Category: {{ game.category }}</span></p>
                 <!-- game max level (if any) -->
-                <p><span class="type">Max Level: 10</span></p>
+                <p><span class="type">Max Level: {{ game.max_level }}</span></p>
             </div>
             <!-- game summary (if any)-->
             <p class="text">
-                Uno is an American shedding-type card game that is played with a specially printed deck. The game's
-                general principles put it into the crazy eights family of card games, and it is similar to the
-                traditional European game mau-mau.
+                {{ game.summary }}
             </p>
 
             <!-- Edit/Delete buttons -->
             <div class="buttons">
-                <a href="#" class="button">Edit</a>
-                <a href="#" class="button">Delete</a>
+                <a href="{% url 'edit game' game.pk %}" class="button">Edit</a>
+                <a href="{% url 'delete game' game.pk %}" class="button">Delete</a>
             </div>
         </div>
     </section>
-
-    <!-- footer -->
-    <footer>
-        &copy;SoftUni Team 2022. All rights reserved.
-    </footer>
 </div>
-</body>
-</html>
+{% endblock %}

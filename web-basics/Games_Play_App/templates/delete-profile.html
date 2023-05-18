@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/style.css">
-    <title>GamesPlay</title>
-</head>
+{% extends 'base.html' %}
+{% block content %}
 <body>
     <header>
 
@@ -24,8 +18,9 @@
         <h1>Are you sure you want to delete your profile?</h1>
 
         <!-- delete profile form -->
-        <form id='delete'>
-
+        <form method="POST" id='delete'>
+            {{ form }}
+            {% csrf_token %}
             <!-- confirm button -->
             <input class="btn submit" type="submit" value="Delete">
         </form>
@@ -33,11 +28,4 @@
 
     </div>
 </section>
-
-<!-- footer -->
-<footer>
-    &copy;SoftUni Team 2022. All rights reserved.
-</footer>
-
-</body>
-</html>
+{% endblock %}

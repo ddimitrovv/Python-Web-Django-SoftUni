@@ -31,7 +31,7 @@
             <h1>{{ game.category }}</h1>
             <div class="data-buttons">
                 <!-- game details button -->
-                <a href="#" class="btn details-btn">Details</a>
+                <a href="{% url 'details game' game.pk %}" class="btn details-btn">Details</a>
             </div>
 
         </div>
