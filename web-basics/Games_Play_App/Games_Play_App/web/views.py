@@ -39,9 +39,10 @@ def profile_details(request):
     games = Game.objects.all()
     total_games = games.count()
     total_rating = 0
-    for game in games:
-        total_rating += game.rating
-    average_rating = total_rating / total_games
+    if games:
+        for game in games:
+            total_rating += game.rating
+    average_rating = total_rating / total_games if games else 0
     context = {
         'profile': current_profile,
         'total_games': total_games,
@@ -74,6 +75,8 @@ def delete_profile(request):
         form = GameDeleteForm(request.POST, instance=current_profile)
         if form.is_valid():
             form.save()
+            games = Game.objects.all()
+            games.delete()
             return redirect('home')
     context = {
         'form': form
