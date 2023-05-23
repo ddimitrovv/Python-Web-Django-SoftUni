@@ -22,7 +22,7 @@ class ProfileDeleteForm(ProfileBaseForm):
 
     def __set_disabled_fields(self):
         for _, field in self.fields.items():
-            field.widget.attrs['readonly'] = 'readonly'
+            field.disabled = True
 
 
 class BookBaseForm(forms.ModelForm):
@@ -43,4 +43,4 @@ class BookDeleteForm(BookBaseForm):
 
     def __set_disabled_fields(self):
         for _, field in self.fields.items():
-            field.widget.attrs['readonly'] = 'readonly'
+            field.disabled = True

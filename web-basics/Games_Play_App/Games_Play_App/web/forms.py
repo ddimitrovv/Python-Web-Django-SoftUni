@@ -54,5 +54,4 @@ class GameDeleteForm(GameBaseForm):
 
     def __set_disabled_fields(self):
         for _, field in self.fields.items():
-            field.widget.attrs['disabled'] = True
-            field.required = False
+            field.disabled = True
