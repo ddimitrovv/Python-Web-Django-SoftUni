@@ -3,21 +3,36 @@ from django import forms
 from Games_Play_App.web.models import Profile, Game
 
 
+class ProfileBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+
 class ProfileCreateForm(forms.ModelForm):
     # password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = Profile
         widgets = {
             'password': forms.PasswordInput,
         }
         fields = ('email', 'age', 'password')
 
 
-class ProfileEditForm(forms.ModelForm):
+class ProfileEditForm(ProfileBaseForm):
+    ...
+
+
+class ProfileDeleteForm(ProfileBaseForm):
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ()
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+        return self.instance
         
 
 class GameBaseForm(forms.ModelForm):
@@ -27,10 +42,6 @@ class GameBaseForm(forms.ModelForm):
 
 
 class GameDeleteForm(GameBaseForm):
-
-    class Meta:
-        model = Game
-        fields = ()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,4 +54,5 @@ class GameDeleteForm(GameBaseForm):
 
     def __set_disabled_fields(self):
         for _, field in self.fields.items():
-            field.widget.attrs['readonly'] = 'readonly'
+            field.widget.attrs['disabled'] = True
+            field.required = False

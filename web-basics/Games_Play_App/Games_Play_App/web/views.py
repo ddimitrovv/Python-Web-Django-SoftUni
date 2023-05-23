@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from Games_Play_App.web.forms import ProfileCreateForm, GameBaseForm, GameDeleteForm, ProfileEditForm
+from Games_Play_App.web.forms import ProfileCreateForm, GameBaseForm, GameDeleteForm, ProfileEditForm, ProfileDeleteForm
 from Games_Play_App.web.models import Profile, Game
 
 
@@ -70,9 +70,9 @@ def delete_profile(request):
     current_profile = Profile.objects.get()
 
     if request.method == 'GET':
-        form = GameDeleteForm(instance=current_profile)
+        form = ProfileDeleteForm(instance=current_profile)
     else:
-        form = GameDeleteForm(request.POST, instance=current_profile)
+        form = ProfileDeleteForm(request.POST, instance=current_profile)
         if form.is_valid():
             form.save()
             games = Game.objects.all()
