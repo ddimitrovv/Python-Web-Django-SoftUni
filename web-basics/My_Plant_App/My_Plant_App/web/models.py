@@ -49,6 +49,9 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 class Plant(models.Model):
     PLANT_TYPE_MAX_LEN = 20
