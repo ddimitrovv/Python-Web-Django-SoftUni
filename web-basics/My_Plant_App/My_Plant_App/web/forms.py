@@ -27,7 +27,14 @@ class ProfileEditForm(ProfileBaseForm):
 
 
 class ProfileDeleteForm(ProfileBaseForm):
-    ...
+    class Meta:
+        model = Profile
+        fields = ()
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+        return self.instance
 
 # ----- Plant Forms -----
 
@@ -42,13 +49,24 @@ class PlantCreateForm(PlantBaseForm):
     ...
 
 
-class PlantDetailsForm(ProfileBaseForm):
+class PlantDetailsForm(PlantBaseForm):
     ...
 
 
-class PlantEditForm(ProfileBaseForm):
+class PlantEditForm(PlantBaseForm):
     ...
 
 
-class PlantDeleteForm(ProfileBaseForm):
-    ...
+class PlantDeleteForm(PlantBaseForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__set_disabled_fields()
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+        return self.instance
+
+    def __set_disabled_fields(self):
+        for _, field in self.fields.items():
+            field.disabled = True

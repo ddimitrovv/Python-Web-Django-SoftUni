@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
-from My_Plant_App.web.forms import ProfileCreateForm, PlantCreateForm
+from My_Plant_App.web.forms import ProfileCreateForm, PlantCreateForm, PlantEditForm, PlantDeleteForm, ProfileEditForm, \
+    ProfileDeleteForm
 from My_Plant_App.web.models import Plant, Profile
 
 
@@ -31,7 +32,7 @@ def home_view(request):
 def add_profile(request):
     current_profile = get_profile()
     if current_profile is not None:
-        return redirect('home')
+        return redirect('catalogue')
 
     if request.method == 'GET':
         form = ProfileCreateForm()
@@ -39,7 +40,7 @@ def add_profile(request):
         form = ProfileCreateForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('catalogue')
 
     context = {
         'form': form,
@@ -56,6 +57,40 @@ def profile_details(request):
         'plants_count': plants_count
     }
     return render(request, 'profile/profile-details.html', context)
+
+
+def edit_profile(request):
+    profile = Profile.objects.get()
+    if request.method == 'GET':
+        form = ProfileEditForm(instance=profile)
+    else:
+        form = ProfileEditForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile details')
+    context = {
+        'form': form,
+        'profile': profile
+    }
+    return render(request, 'profile/edit-profile.html', context)
+
+
+def delete_profile(request):
+    profile = Profile.objects.get()
+    plants = Plant.objects.all()
+    if request.method == 'GET':
+        form = ProfileDeleteForm(instance=profile)
+    else:
+        form = ProfileDeleteForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            plants.delete()
+            return redirect('home')
+    context = {
+        'form': form,
+        'profile': profile
+    }
+    return render(request, 'profile/delete-profile.html', context)
 
 
 def catalogue(request):
@@ -83,9 +118,43 @@ def create_plant(request):
 
 
 def details_plant(request, pk):
-    plant = Plant.objects.filter(id=pk).get()
+    plant = get_plant(pk)
     context = {
         'plant': plant,
         'profile': Profile.objects.get()
     }
     return render(request, 'plant/plant-details.html', context)
+
+
+def edit_plant(request, pk):
+    plant = get_plant(pk)
+
+    if request.method == 'GET':
+        form = PlantEditForm(instance=plant)
+    else:
+        form = PlantEditForm(request.POST, instance=plant)
+        if form.is_valid():
+            form.save()
+            return redirect('catalogue')
+    context = {
+        'form': form,
+        'profile': Profile.objects.get()
+    }
+    return render(request, 'plant/edit-plant.html', context)
+
+
+def delete_plant(request, pk):
+    plant = get_plant(pk)
+
+    if request.method == 'GET':
+        form = PlantDeleteForm(instance=plant)
+    else:
+        form = PlantDeleteForm(request.POST, instance=plant)
+        if form.is_valid():
+            form.save()
+            return redirect('catalogue')
+    context = {
+        'form': form,
+        'profile': Profile.objects.get()
+    }
+    return render(request, 'plant/delete-plant.html', context)

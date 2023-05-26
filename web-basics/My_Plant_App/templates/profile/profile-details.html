@@ -1,4 +1,5 @@
 {% extends 'home-page.html' %}
+{% load static %}
 {% block content %}
 
     <section id="plant-details">
@@ -7,7 +8,7 @@
             <div class="plant-header">
                 <!-- default profile image (if the user does NOT have any)-->
             {% if not profile.profile_picture %}
-                    <img class="plant-img" src="/static/images/default.jpg" alt='profile-image'/>
+                    <img class="plant-img" src="{% static '/images/default.jpg' %}" alt='profile-image'/>
                 <!-- if the user has a profile image -->
             {% else %}
                     <img class="plant-img" src="{{ profile.profile_picture }}" alt='profile-image'/>
@@ -21,25 +22,25 @@
                 <p class="description">Total stars:</p>
                 <!-- if the user has only one plant -->
                 {% if plants_count == 1 %}
-                <img class="star-img" src="/static/images/star3.png" alt='profile-image'/>
+                <img class="star-img" src="{% static 'images/star3.png' %}" alt='profile-image'/>
                 <!-- if the user has two plants -->
-                    {% elif plants_count == 2 %}
-                <img class="star-img" src="/static/images/star3.png" alt='profile-image'/>
-                <img class="star-img" src="/static/images/star3.png" alt='profile-image'/>
+                {% elif plants_count == 2 %}
+                <img class="star-img" src="{% static 'images/star3.png' %}" alt='profile-image'/>
+                <img class="star-img" src="{% static 'images/star3.png' %}" alt='profile-image'/>
                 <!-- if the user has three or more plants -->
-                    {% elif plants_count >= 3 %}
-                <img class="star-img" src="/static/images/star3.png" alt='profile-image'/>
-                <img class="star-img" src="/static/images/star3.png" alt='profile-image'/>
-                <img class="star-img" src="/static/images/star3.png" alt='profile-image'/>
+                {% elif plants_count >= 3 %}
+                <img class="star-img" src="{% static 'images/star3.png' %}" alt='profile-image'/>
+                <img class="star-img" src="{% static 'images/star3.png' %}" alt='profile-image'/>
+                <img class="star-img" src="{% static 'images/star3.png' %}" alt='profile-image'/>
                 <!-- if the user has zero plants -->
-                    {% elif plants_count == 0 %}
+                {% elif plants_count == 0 %}
                 <p class="description">Total stars: 0</p>
                 {% endif %}
 
                 <!-- Edit/Delete buttons -->
                 <div class="buttons">
-                    <a href="#" class="edit-button">Edit</a>
-                    <a href="#" class="delete-button">Delete</a>
+                    <a href="{% url 'edit profile' %}" class="edit-button">Edit</a>
+                    <a href="{% url 'delete profile' %}" class="delete-button">Delete</a>
                 </div>
             </div>
         </div>
