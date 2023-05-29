@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
 <!-- Delete Profile Page-->
 <section id="detailsPage">
     <div class="wrapper">
@@ -5,7 +9,9 @@
 
             <!-- Delete Profile Form -->
             <h1>Are you sure you want to delete your profile?</h1>
-            <form>
+            <form method="POST">
+                {{ form }}
+                {% csrf_token %}
                 <!-- Confirm Button -->
                 <button class="delete-profile" type="submit">Delete</button>
             </form>
@@ -14,3 +20,5 @@
         </div>
     </div>
 </section>
+
+{% endblock %}
