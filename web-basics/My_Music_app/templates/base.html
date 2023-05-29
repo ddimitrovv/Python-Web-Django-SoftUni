@@ -20,7 +20,7 @@
             {% if profile %}
             <ul>
                 <!--Only for user with created profile-->
-                <li><a href="#">Create Album</a></li>
+                <li><a href="{% url 'add album' %}">Create Album</a></li>
                 <li><a href="{% url 'profile details' %}">Profile</a></li>
             </ul>
             {% endif %}

@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 
-from My_Music_app.web.forms import ProfileCreateForm, ProfileDeleteForm
+from My_Music_app.web.forms import ProfileCreateForm, ProfileDeleteForm, AlbumCreateForm, AlbumEditForm, AlbumDeleteForm
 from My_Music_app.web.models import Profile, Album
 
 
 def get_profile():
     current_profile = Profile.objects.all() or None
     return current_profile
+
+
+def get_album(pk):
+    album = Album.objects.filter(id=pk).get()
+    return album
 
 
 def home_view(request):
@@ -72,4 +77,55 @@ def profile_delete(request):
     return render(request, 'profile/profile-delete.html', context)
 
 
+def add_album(request):
+    if request.method == 'GET':
+        form = AlbumCreateForm()
+    else:
+        form = AlbumCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    context = {
+        'form': form
+    }
+    return render(request, 'album/add-album.html', context)
 
+
+def details_album(request, pk):
+    album = get_album(pk)
+    context = {
+        'album': album
+    }
+    return render(request, 'album/album-details.html', context)
+
+
+def edit_album(request, pk):
+    album = get_album(pk)
+    if request.method == 'GET':
+        form = AlbumEditForm(instance=album)
+    else:
+        form = AlbumEditForm(request.POST, instance=album)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'album/edit-album.html', context)
+
+
+def delete_album(request, pk):
+    album = get_album(pk)
+    if request.method == 'GET':
+        form = AlbumDeleteForm(instance=album)
+    else:
+        form = AlbumDeleteForm(request.POST, instance=album)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'album/delete-album.html', context)
