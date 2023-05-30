@@ -37,4 +37,6 @@ class Recipe(models.Model):
         null=False,
         verbose_name='Time',
     )
-    
+
+    def __str__(self):
+        return self.title
