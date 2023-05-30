@@ -28,5 +28,5 @@ class RecipeDeleteForm(RecipeBaseForm):
         return self.instance
 
     def __set_disabled_fields(self):
-        for _, field in self.fields:
+        for _, field in self.fields.items():
             field.disabled = True

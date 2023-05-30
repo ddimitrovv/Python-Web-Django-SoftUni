@@ -1,6 +1,8 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
 
+from custom_validators.custom_validators import validate_comma_separated
+
 
 class Recipe(models.Model):
     TITLE_MAX_LEN = 30
@@ -26,6 +28,9 @@ class Recipe(models.Model):
     )
 
     ingredients = models.TextField(
+        validators=(
+            validate_comma_separated,
+        ),
         max_length=INGREDIENTS_MAX_LEN,
         blank=False,
         null=False,
