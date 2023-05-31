@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <header>
 
@@ -19,7 +20,7 @@
             <div class="game-header">
                 {% if not profile.picture %}
                 <!-- default profile image (if the user does NOT have any)-->
-                <img class="game-img" src="/static/images/default-user.jpg" alt='profile-image'/>
+                <img class="game-img" src="{% static 'images/default-user.jpg' %}" alt='profile-image'/>
                 {% else %}
                 <!-- if the user has a profile image -->
                 <img class="game-img" src="{{ profile.picture }}" alt='profile-image'/>
